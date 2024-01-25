@@ -1,62 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Radio Button</title>
     <style>
-    body {
-      color: rgb(12, 1, 1);
-    }
+      body { color: rgb(12, 1, 1); }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <p>Select your size:</p>
-    <div>
-        <input type="radio" name="size" value="XS" id="xs">
-        <label for="xs">XS</label>
-    </div>
-
-    <div>
-        <input type="radio" name="size" value="S" id="s">
-        <label for="s">S</label>
-    </div>
-    <div>
-        <input type="radio" name="size" value="M" id="m">
-        <label for="m">M</label>
-    </div>
-    <div>
-        <input type="radio" name="size" value="L" id="l">
-        <label for="l">L</label>
-    </div>
-    <div>
-        <input type="radio" name="size" value="XL" id="xl">
-        <label for="xl">XL</label>
-    </div>
-    <div>
-        <input type="radio" name="size" value="XXL" id="xxl">
-        <label for="xxl">XXL</label>
-    </div>
-
-    <input type="button" value="click for value" id="btn">
+    <div id="radioGroup"></div>    
+     <br><br>
+    <input type="button" value="Click for Size" id="btn">
 
     <h2 id="output"></h2>
 
-    <script>const button = document.getElementById('btn');
+    <script>
 
-const radioButtons = document.querySelectorAll('input[name="size"]');
+      const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+      let radioGroups = document.getElementById("radioGroup");
 
-button.addEventListener("click", () => {
-  let selectedSize;
-  for(const radioButton of radioButtons){
-    if(radioButton.checked) {
-      selectedSize = radioButton.value;
-      break;
-    }
-  }
-output.innerText = selectedSize ? selectedSize : "Select any Out first";
-})</script>
-</body>
+      radioGroups.innerHTML = sizes.map((size) =>
+        `<div>
+            <input type="radio" name="size" value ="${size}" id="${size}">
+            <label for="${size}"> ${size} </label>
+          </div>`).join('   ');
+    
+
+      const button = document.getElementById("btn")
+      const radioButtons = document.querySelectorAll('input[name="size"]');
+
+      button.addEventListener("click", () => {
+        let selectedSize;
+        for (const radioButton of radioButtons) {
+          if (radioButton.checked) {
+            selectedSize = radioButton.value; 
+            break;
+          }
+        }
+        output.innerText = selectedSize ? selectedSize : "Select any size first";
+      });
+    </script>
+  </body>
 </html>
